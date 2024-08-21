@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"src_wrap",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"src_wrap",
+  "parent":{
+    "name":"module:math",
+    "path":"folders/modules/module:common/module:math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

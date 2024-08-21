@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"src_crash",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"src_crash",
+  "parent":{
+    "name":"module:error",
+    "path":"folders/modules/module:common/module:error.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

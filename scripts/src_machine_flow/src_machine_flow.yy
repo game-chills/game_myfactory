@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"src_machine_flow",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"src_machine_flow",
+  "parent":{
+    "name":"module:control",
+    "path":"folders/modules/module:common/module:control.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

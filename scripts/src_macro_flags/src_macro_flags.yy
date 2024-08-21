@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"src_macro_flags",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"src_macro_flags",
+  "parent":{
+    "name":"game_myfactory",
+    "path":"game_myfactory.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

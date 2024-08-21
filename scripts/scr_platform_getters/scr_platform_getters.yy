@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_platform_getters",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_platform_getters",
+  "parent":{
+    "name":"game_myfactory",
+    "path":"game_myfactory.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
