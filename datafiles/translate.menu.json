@@ -1,6 +1,9 @@
 {
   "ru": {
-    "play": "RU-play"
+    "play": "RU-play",
+    "you-name": [
+        "arg", "bard"
+    ]
   },
   "en": {
     "play": "EN-play"

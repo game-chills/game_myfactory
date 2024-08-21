@@ -198,7 +198,10 @@ function t_append_content(_language, _json_translate, _prefix="") {
 					continue;	
 				}
 					
-				_translate_lan[$ _finally_key] = string(_node_value);
+				_translate_lan[$ _finally_key] = 
+					is_array(_node_value)
+					? _node_value
+					: string(_node_value);
 					
 			}
 				
@@ -271,6 +274,8 @@ function t_append_content__sync_include_files(_prefix, _files) {
 				string_length(self.prefix) + 1,
 				string_length(_filename) - string_length(self.prefix) - string_length(self.postfix)
 			)
+			
+			t_append_content__sync_include_file(_filename, _name);
 
 		})
 	
@@ -308,7 +313,7 @@ function t_set_current_language(_current_language) {
 	
 }
 
-function t(_key, _data=undefined) {
+function t(_key, _data=undefined, _arrayindex=-1) {
 	
 	static _memory = (function() {
 		t_static_validate_ready();
@@ -330,6 +335,15 @@ function t(_key, _data=undefined) {
 	if (is_undefined(_translated)) {
 		return;
 	}
+	
+	if (is_array(_translated)) {
+		if (_arrayindex >= 0 && _arrayindex <= array_length(_translated) - 1) {
+			_translated = _translated[_arrayindex];
+		} else {
+			_translated = script_execute_ext(choose, _translated);
+		}
+	}
+	
 	if (is_array(_data)) {
 		return string_ext(_translated, _data);
 	}

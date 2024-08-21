@@ -8,4 +8,6 @@ t_append_content__sync_include_files("translate", [
 	"translate.menu.json"
 ]);
 
+t_set_current_language("ru");
+
 instance_destroy();
