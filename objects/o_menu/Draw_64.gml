@@ -11,10 +11,10 @@ var _gui_h = display_get_gui_height();
 draw_text(_gui_w / 2, _gui_h / 2, "Play");
 
 
-/// debug
+///// debug
 
-var _mouse = GlobalService("control:mouse").request("state");
+//var _mouse = GlobalService("control:mouse").request("state");
 
-draw_text(256, 256, _mouse.flow.get_kind_name());
-draw_text(256, 280, _mouse.id);
-draw_text(256, 320, string("{0} {1}", _mouse.xcf, _mouse.ycf));
+//draw_text(256, 256, _mouse.flow.get_kind_name());
+//draw_text(256, 280, _mouse.id);
+//draw_text(256, 320, string("{0} {1}", _mouse.xcf, _mouse.ycf));

@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"src_vec2",
+  "%Name":"scr_macro_flags",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"src_vec2",
+  "name":"scr_macro_flags",
   "parent":{
-    "name":"module:math",
-    "path":"folders/modules/module:common/module:math.yy",
+    "name":"game_myfactory",
+    "path":"game_myfactory.yyp",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

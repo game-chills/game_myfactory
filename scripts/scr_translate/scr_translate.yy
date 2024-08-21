@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_translate",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_translate",
+  "parent":{
+    "name":"module:translate",
+    "path":"folders/modules/module:common/module:translate.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"src_machine_flow",
+  "%Name":"scr_machine_flow",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"src_machine_flow",
+  "name":"scr_machine_flow",
   "parent":{
     "name":"module:control",
     "path":"folders/modules/module:common/module:control.yy",

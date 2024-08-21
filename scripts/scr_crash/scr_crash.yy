@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"src_macro_flags",
+  "%Name":"scr_crash",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"src_macro_flags",
+  "name":"scr_crash",
   "parent":{
-    "name":"game_myfactory",
-    "path":"game_myfactory.yyp",
+    "name":"module:error",
+    "path":"folders/modules/module:common/module:error.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

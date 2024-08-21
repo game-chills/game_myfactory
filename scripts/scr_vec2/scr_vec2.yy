@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"src_crash",
+  "%Name":"scr_vec2",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"src_crash",
+  "name":"scr_vec2",
   "parent":{
-    "name":"module:error",
-    "path":"folders/modules/module:common/module:error.yy",
+    "name":"module:math",
+    "path":"folders/modules/module:common/module:math.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"src_error",
+  "%Name":"scr_wrap",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"src_error",
+  "name":"scr_wrap",
   "parent":{
-    "name":"module:error",
-    "path":"folders/modules/module:common/module:error.yy",
+    "name":"module:math",
+    "path":"folders/modules/module:common/module:math.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
