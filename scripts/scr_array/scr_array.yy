@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_array",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_array",
+  "parent":{
+    "name":"module:array",
+    "path":"folders/modules/module:common/module:array.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

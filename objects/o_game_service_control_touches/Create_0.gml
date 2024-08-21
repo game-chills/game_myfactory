@@ -4,6 +4,8 @@
 touches_count = 0;
 touches_list = [];
 
+touch_mouse = undefined;
+
 touch_mouse_mode_x = 0;
 touch_mouse_mode_y = 0;
 
@@ -26,15 +28,10 @@ project_camera_to_world = function() {
 
 update_touches = function() {
 	
+	touch_mouse = undefined;
+	
 	if (is_desktop() && html_fullscreen_extension_available()) {
 		var _is_mouse_click = mouse_check_button(mb_left);
-	
-		if (!_is_mouse_click) {
-			touches_count = 0;
-			touches_list = [];
-		
-			return;
-		}
 	
 		var _mxcf = window_mouse_get_x() / browser_width;
 		var _mycf = window_mouse_get_y() / browser_height;
@@ -65,19 +62,22 @@ update_touches = function() {
 		touches_list = [_touch];
 	
 		self.project_camera_to_world();
-		return;
-	
-	}
-
-	if (is_desktop()) {
-		var _is_mouse_click = mouse_check_button(mb_left);
-	
+		
+		touch_mouse = _touch;
+		
 		if (!_is_mouse_click) {
 			touches_count = 0;
 			touches_list = [];
 		
 			return;
 		}
+		
+		return;
+	
+	}
+
+	if (is_desktop()) {
+		var _is_mouse_click = mouse_check_button(mb_left);
 	
 		var _mxcf = window_mouse_get_x() / window_get_width();
 		var _mycf = window_mouse_get_y() / window_get_height();
@@ -106,8 +106,18 @@ update_touches = function() {
 	
 		touches_count = 1;
 		touches_list = [_touch];
-	
+		
 		self.project_camera_to_world();
+	
+		touch_mouse = _touch;
+		
+		if (!_is_mouse_click) {
+			touches_count = 0;
+			touches_list = [];
+		
+			return;
+		}
+		
 		return;
 	
 	}
@@ -128,6 +138,10 @@ update_touches = function() {
 }
 
 /* service providers */
+
+GlobalService("control:touches").provider("mouse", function() {
+	return touch_mouse;
+});
 
 GlobalService("control:touches").provider("count", function() {
 	return touches_count;

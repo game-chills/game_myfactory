@@ -6,6 +6,7 @@ if (_count == 0) {
 	
 	last_touch_id = undefined;
 	
+	self.read_touch_mouse(true);
 	last_pos_world_flow.input(0);
 	
 	return;
@@ -59,6 +60,7 @@ if (_touch_index != -1) {
 	
 } else {
 	
+	self.read_touch_mouse(false);
 	last_pos_world_flow.input(0);
 	
 }
