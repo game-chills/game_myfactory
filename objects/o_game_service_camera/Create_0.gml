@@ -14,7 +14,8 @@
 
 camera_mode = "base"; // "base"
 camera_props = {
-	width: 1080,
+	width: 1920,
+	height: 1080,
 }
 
 /* state */
@@ -122,6 +123,30 @@ get_yangle = function() {
 	)
 }
 
+get_world_pos = function(_props) {
+	var _xocf = 0.5 - _props.xcf;
+	var _yocf = 0.5 - _props.ycf;
+	
+	var _angle = camera_get_view_angle(camera);
+	var _width = camera_get_view_width(camera);
+	var _height = camera_get_view_height(camera);
+	
+	var _xcenter = camera_get_view_x(camera) + _width / 2;
+	var _ycenter = camera_get_view_y(camera) + _height / 2;
+	
+	var _xworld = _xcenter - (
+		lengthdir_x(_width * _xocf, -_angle) - lengthdir_x(_height * _yocf, -_angle + 90)
+	);
+	var _yworld = _ycenter - (
+		lengthdir_y(_width * _xocf, -_angle) - lengthdir_y(_height * _yocf, -_angle + 90)
+	);
+	
+	return {
+		x_world: _xworld,
+		y_world: _yworld,
+	}
+}
+
 get_scale = function() {
 	return camera_scale;	
 }
@@ -173,6 +198,7 @@ GlobalService("camera").provider("get:xcenter", get_xcenter);
 GlobalService("camera").provider("get:ycenter", get_ycenter);
 GlobalService("camera").provider("get:xangle", get_xangle);
 GlobalService("camera").provider("get:yangle", get_yangle);
+GlobalService("camera").provider("get:world_pos", get_world_pos);
 GlobalService("camera").provider("get:scale", get_scale);
 GlobalService("camera").provider("get:angle", get_angle);
 
@@ -204,10 +230,30 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		} else if (is_numeric(_cam_props_h) && is_undefined(_cam_props_w)) {
 			_height = _cam_props_h;
 			_width = _props.width / _props.height * _cam_props_h;
+		} else if (is_numeric(_cam_props_h) && is_numeric(_cam_props_w)) {
+			
+			var _w = _props.width / _props.height * _cam_props_h;
+			var _h = _props.height / _props.width * _cam_props_w;
+			
+			var _v1_w = _cam_props_w;
+			var _v1_h = _h;
+			var _v1_square = _v1_w * _v1_h;
+			
+			var _v2_w = _w;
+			var _v2_h = _cam_props_h;
+			var _v2_square = _v2_w * _v2_h;
+			
+			if (_v1_square > _v2_square) {
+				_width = _v1_w;
+				_height = _v1_h;
+			} else {
+				_width = _v2_w;
+				_height = _v2_h;
+			}
+			
 		} else {
-			emit_crash_unacceptable_behavior(
-				"[o_game_service_camera] detect bad params"
-			);
+			_width = _props.width;
+			_height = _props.height;
 		}
 		
 		if (MACRO_FLAG_IS_DEBUG) {

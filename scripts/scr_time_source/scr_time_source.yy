@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_time_source",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_time_source",
+  "parent":{
+    "name":"module:time_source",
+    "path":"folders/modules/module:common/module:time_source.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

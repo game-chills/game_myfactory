@@ -1,6 +1,7 @@
 
 /* state */
 language = "en";
+language_provided = false;
 
 authorization_id = "unauthorized";
 authorization_name = "unauthorized";
@@ -12,7 +13,6 @@ init_prod = function() {
 	
 	flag_get_environment = false;
 	flag_authorization = false;
-	tryes_loaded_yagames = 7;
 	
 	alarm_set(0, game_get_speed(gamespeed_fps));
 	
@@ -20,7 +20,14 @@ init_prod = function() {
 
 init_mock = function() {
 
-	notify_extension_loaded();
+	extend_time_source_sync(
+		5,
+		function() {
+			
+			self.notify_extension_loaded();
+			
+		}
+	);
 	
 }
 
@@ -76,6 +83,22 @@ try_notify_extension_loaded = function() {
 notify_extension_loaded = function() {
 	GlobalEventEmitter("loader").emit("ready", "e_yagames");
 }
+
+/* listeners */
+
+GlobalService("yagames").provider("get:language", function() {
+	return {
+		language,
+		provided: language_provided,
+	};
+});
+GlobalService("yagames").provider("get:auth", function() {
+	return {
+		id: authorization_id,
+		name: authorization_name,
+		signature: authorization_signature
+	};
+});
 
 /* init */
 

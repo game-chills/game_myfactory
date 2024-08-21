@@ -145,6 +145,7 @@ if ((async_load[? "request_id"] == get_environment_req_id)) {
 			var _lang = _data.i18n.lang;
 			
 			language = _lang;
+			language_provided = true;
 			
 			flag_get_environment = true;
 			try_notify_extension_loaded();

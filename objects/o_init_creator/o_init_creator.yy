@@ -1,21 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"o_game_service_yagames",
+  "%Name":"o_init_creator",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":70,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_game_service_yagames",
+  "name":"o_init_creator",
   "overriddenProperties":[],
   "parent":{
-    "name":"game:services",
-    "path":"folders/services/game:services.yy",
+    "name":"stage-0::[init]",
+    "path":"folders/stages/stage-0::[init].yy",
   },
   "parentObjectId":null,
-  "persistent":true,
+  "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
@@ -34,5 +31,5 @@
   "solid":false,
   "spriteId":null,
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

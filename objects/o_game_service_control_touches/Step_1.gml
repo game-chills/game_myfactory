@@ -1,0 +1,2 @@
+
+self.update_touches();
