@@ -66,6 +66,7 @@
     {"id":{"name":"src_macro_flags","path":"scripts/src_macro_flags/src_macro_flags.yy",},},
     {"id":{"name":"src_vec2","path":"scripts/src_vec2/src_vec2.yy",},},
     {"id":{"name":"src_wrap","path":"scripts/src_wrap/src_wrap.yy",},},
+    {"id":{"name":"icon","path":"sprites/icon/icon.yy",},},
     {"id":{"name":"s_background","path":"sprites/s_background/s_background.yy",},},
   ],
   "resourceType":"GMProject",

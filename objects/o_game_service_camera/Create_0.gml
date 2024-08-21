@@ -223,6 +223,8 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		
 		var _width;
 		var _height;
+		var _surf_width = undefined;
+		var _surf_height = undefined;
 		
 		if (is_numeric(_cam_props_w) && is_undefined(_cam_props_h)) {
 			_width = _cam_props_w;
@@ -254,6 +256,32 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		} else {
 			_width = _props.width;
 			_height = _props.height;
+		}
+		
+		if (is_desktop()) {
+			_surf_width ??= _props.width;
+			_surf_height ??= _props.height;
+		}
+	
+		if (is_browser() && is_mobile()) {
+			var _w = _props.width / _props.height * _cam_props_h;
+			var _h = _props.height / _props.width * _cam_props_w;
+			
+			var _v1_w = _cam_props_w;
+			var _v1_h = _h;
+			var _v1_square = _v1_w * _v1_h;
+			
+			var _v2_w = _w;
+			var _v2_h = _cam_props_h;
+			var _v2_square = _v2_w * _v2_h;
+			
+			if (_v1_square > _v2_square) {
+				_surf_width ??= _v2_w;
+				_surf_height ??= _v2_h;
+			} else {
+				_surf_width ??= _v1_w;
+				_surf_height ??= _v1_h;
+			}
 		}
 		
 		if (MACRO_FLAG_IS_DEBUG) {
@@ -328,13 +356,26 @@ GlobalEventEmitter("window").on("change", function(_props) {
 			}
 		}
 		
+		_surf_width ??= _width;
+		_surf_height ??= _height;
+		
+		if (MACRO_FLAG_IS_DEBUG) {
+			show_debug_message({
+				emitter: "o_game_service_camera",
+				cause: "e_module_html_fullscreen:surface",
+				text: "GUI and APP_SURF size",
+				width: _surf_width,
+				height: _surf_height,
+			});
+		}
+		
 		/* application surface */
 		if (application_surface_is_enabled()) {
-			surface_resize(application_surface, _width, _height);	
+			surface_resize(application_surface, _surf_width, _surf_height);	
 		}
 		
 		/* display gui */
-		display_set_gui_size(_width, _height);
+		display_set_gui_size(_surf_width, _surf_height);
 		
 		/* camera update */
 		camera_base_w = _width;
