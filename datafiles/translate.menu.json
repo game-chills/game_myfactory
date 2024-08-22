@@ -1,11 +1,10 @@
 {
   "ru": {
-    "play": "RU-play",
-    "you-name": [
-        "arg", "bard"
-    ]
+    "play": "Играть",
+    "sound": {
+      "switch": "Переключить звук"
+    }
   },
   "en": {
-    "play": "EN-play"
   }
 }

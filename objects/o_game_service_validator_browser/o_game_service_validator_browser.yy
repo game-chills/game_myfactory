@@ -1,11 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"o_game_serivce_validator_browser",
+  "%Name":"o_game_service_validator_browser",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_game_serivce_validator_browser",
+  "name":"o_game_service_validator_browser",
   "overriddenProperties":[],
   "parent":{
     "name":"game:services",

@@ -313,7 +313,7 @@ function t_set_current_language(_current_language) {
 	
 }
 
-function t(_key, _data=undefined, _arrayindex=-1) {
+function t_void(_key, _data=undefined, _arrayindex=-1) {
 	
 	static _memory = (function() {
 		t_static_validate_ready();
@@ -350,4 +350,8 @@ function t(_key, _data=undefined, _arrayindex=-1) {
 	
 	return _translated;
 	
+}
+
+function t(_key, _data=undefined, _arrayindex=undefined) {
+	return t_void(_key, _data, _arrayindex) ?? _key;
 }
