@@ -224,6 +224,9 @@ if (_is_need_interaction_update) {
 					if (is_desktop()) {
 						_component.state.type = "hover";	
 					}
+					if (is_mobile() && _control_mouse.flow.is_active()) {
+						_component.state.type = "hover";	
+					}
 					
 					_is_same_last_component =
 						is_undefined(ui_control.mouse_last_component) ||
