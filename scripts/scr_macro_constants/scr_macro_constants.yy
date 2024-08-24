@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_macro_constants",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_macro_constants",
+  "parent":{
+    "name":"game_myfactory",
+    "path":"game_myfactory.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

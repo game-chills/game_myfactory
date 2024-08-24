@@ -1,33 +1,93 @@
 
-draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_font(font_menu_ru);
-draw_set_halign(fa_center);
-draw_set_valign(fa_center);
+if (!ui.visible) {
+	return;
+}
 
-var _gui_w = display_get_gui_width();
-var _gui_h = display_get_gui_height();
+var _layer = ui.layer;
+var _components = ui.elements[$ _layer];
+	
+if (!is_array(_components)) {
+	return;	
+}
 
-var _button_play_text = t("menu.play");
-
-draw_sprite_stretched_ext(
-	s_menu_button,
-	0,
-	_gui_w / 2 - string_width(_button_play_text) * 0.70,
-	_gui_h / 2 - string_height(_button_play_text) * 0.70,
-	string_width(_button_play_text) * 1.4,
-	string_height(_button_play_text) * 1.4,
-	c_black,
-	0.5
-);
-draw_text(_gui_w / 2, _gui_h / 2, _button_play_text);
-
-draw_text(_gui_w / 2, _gui_h / 2 + 128, t("menu.sound.switch"));
-
-///// debug
-
-//var _mouse = GlobalService("control:mouse").request("state");
-
-//draw_text(256, 256, _mouse.flow.get_kind_name());
-//draw_text(256, 280, _mouse.id);
-//draw_text(256, 320, string("{0} {1}", _mouse.xcf, _mouse.ycf));
+var _length = array_length(_components);
+var _component;
+for (var i = 0; i < _length; ++i) {
+	_component = _components[i];
+			
+	if (_component.type == "button") {
+		
+		draw_set_font(_component.state.font);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_center);
+		
+		if (_component.state.type == "none") {
+			
+			draw_set_color(c_black);
+			draw_set_alpha(ui.draw.alpha);
+			
+			draw_text(
+				_component.state.xc,
+				_component.state.yc,
+				_component.state.text
+			);
+			
+			continue;
+		}
+		
+		if (_component.state.type == "hover") {
+			
+			draw_sprite_stretched_ext(
+				s_menu_button,
+				0,
+				_component.state.x1,
+				_component.state.y1,
+				_component.state.width,
+				_component.state.height,
+				c_black,
+				0.5 * ui.draw.alpha,
+			);
+			
+			draw_set_color(c_white);
+			draw_set_alpha(ui.draw.alpha);
+			
+			draw_text(
+				_component.state.xc,
+				_component.state.yc,
+				_component.state.text
+			);
+			
+			continue;
+		}
+		
+		draw_sprite_stretched_ext(
+			s_menu_button,
+			0,
+			_component.state.x1 + 4,
+			_component.state.y1 + 4,
+			_component.state.width,
+			_component.state.height,
+			c_gray,
+			0.5 * ui.draw.alpha,
+		);
+			
+		draw_set_color(c_ltgray);
+		draw_set_alpha(ui.draw.alpha);
+		
+		draw_text(
+			_component.state.xc,
+			_component.state.yc,
+			_component.state.text
+		);
+		
+		draw_set_color(c_white);
+		draw_text(
+			_component.state.xc + 4,
+			_component.state.yc + 4,
+			_component.state.text
+		);
+		
+		continue;
+		
+	}
+}

@@ -65,6 +65,7 @@
     {"id":{"name":"scr_crash","path":"scripts/scr_crash/scr_crash.yy",},},
     {"id":{"name":"scr_error","path":"scripts/scr_error/scr_error.yy",},},
     {"id":{"name":"scr_machine_flow","path":"scripts/scr_machine_flow/scr_machine_flow.yy",},},
+    {"id":{"name":"scr_macro_constants","path":"scripts/scr_macro_constants/scr_macro_constants.yy",},},
     {"id":{"name":"scr_macro_flags","path":"scripts/scr_macro_flags/scr_macro_flags.yy",},},
     {"id":{"name":"scr_platform_getters","path":"scripts/scr_platform_getters/scr_platform_getters.yy",},},
     {"id":{"name":"scr_service","path":"scripts/scr_service/scr_service.yy",},},

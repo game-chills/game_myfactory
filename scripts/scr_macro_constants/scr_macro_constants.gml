@@ -1,0 +1,2 @@
+
+#macro MACRO_CONST_VERSION "0.0.1"

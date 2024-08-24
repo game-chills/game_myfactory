@@ -24,15 +24,15 @@
   "name":"s_menu_button",
   "nineSlice":{
     "$GMNineSliceData":"",
-    "bottom":3,
-    "enabled":false,
+    "bottom":5,
+    "enabled":true,
     "guideColour":[4294902015,4294902015,4294902015,4294902015,],
     "highlightColour":1728023040,
     "highlightStyle":0,
     "left":3,
     "resourceType":"GMNineSliceData",
     "resourceVersion":"2.0",
-    "right":3,
+    "right":7,
     "tileMode":[
       0,
       0,
@@ -40,7 +40,7 @@
       0,
       0,
     ],
-    "top":3,
+    "top":5,
   },
   "origin":0,
   "parent":{
