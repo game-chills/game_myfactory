@@ -220,7 +220,11 @@ if (_is_need_interaction_update) {
 				)
 				
 				if (_has_collision) {
-					_component.state.type = "hover";
+					
+					if (is_desktop()) {
+						_component.state.type = "hover";	
+					}
+					
 					_is_same_last_component =
 						is_undefined(ui_control.mouse_last_component) ||
 						ui_control.mouse_last_component == _component;
