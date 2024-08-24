@@ -159,7 +159,7 @@ var _control_mouse = GlobalService("control:mouse").request("state");
 if (ui.transition.stage != "interaction") {
 	ui_control.mouse_last_component = undefined;
 }
-
+show_debug_message(_control_mouse.flow.get_kind_name());
 if (is_struct(ui_control.mouse_last_component)) {
 	if (_control_mouse.flow.is_outside()) {
 		ui_control.mouse_last_component = undefined;
@@ -225,16 +225,19 @@ if (_is_need_interaction_update) {
 						_component.state.type = "hover";	
 					}
 					if (is_mobile() && _control_mouse.flow.is_active()) {
-						_component.state.type = "hover";	
+						_component.state.type = "hover";
 					}
 					
-					_is_same_last_component =
-						is_undefined(ui_control.mouse_last_component) ||
+					if (is_undefined(ui_control.mouse_last_component)) {
+						if (_control_mouse.flow.is_in()) {
+							ui_control.mouse_last_component = _component;
+						}
+					}
+					
+					var _is_same_last_component =
 						ui_control.mouse_last_component == _component;
 					
 					if (_is_same_last_component) {
-						ui_control.mouse_last_component = _component;
-					
 						if (_control_mouse.flow.is_active()) {
 							_component.state.type = "pressed";
 						}
