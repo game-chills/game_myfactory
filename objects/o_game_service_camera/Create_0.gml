@@ -285,18 +285,6 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		}
 		
 		if (MACRO_FLAG_IS_DEBUG) {
-			if (_props.orientation == "portrait") {
-				show_debug_message({
-					emitter: "o_game_service_camera",
-					cause: "detect-portrait-mode",
-					text: "unexpected screen orientation (no reaction)",
-					width: _width,
-					height: _height,
-				});
-			}
-		}
-		
-		if (MACRO_FLAG_IS_DEBUG) {
 			show_debug_message({
 				emitter: "o_game_service_camera",
 				cause: "resize",
@@ -318,7 +306,7 @@ GlobalEventEmitter("window").on("change", function(_props) {
 			var _is_active_fullscreen_extension = extension_exists("e_module_html_fullscreen");
 			
 			if (_is_active_fullscreen_extension) {
-				html_fullscreen_custom(_width, _height);
+				html_fullscreen_custom(_width, _height); // resize canvas
 				
 				if (MACRO_FLAG_IS_DEBUG) {
 					show_debug_message({

@@ -159,7 +159,7 @@ var _control_mouse = GlobalService("control:mouse").request("state");
 if (ui.transition.stage != "interaction") {
 	ui_control.mouse_last_component = undefined;
 }
-show_debug_message(_control_mouse.flow.get_kind_name());
+
 if (is_struct(ui_control.mouse_last_component)) {
 	if (_control_mouse.flow.is_outside()) {
 		ui_control.mouse_last_component = undefined;

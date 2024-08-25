@@ -71,7 +71,7 @@ for (var i = 0; i < _length; ++i) {
 			0.5 * ui.draw.alpha,
 		);
 			
-		draw_set_color(c_ltgray);
+		draw_set_color(c_dkgray);
 		draw_set_alpha(ui.draw.alpha);
 		
 		draw_text(

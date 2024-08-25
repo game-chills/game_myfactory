@@ -84,7 +84,7 @@ notify_extension_loaded = function() {
 	GlobalEventEmitter("loader").emit("ready", "e_yagames");
 }
 
-/* listeners */
+/* service providings */
 
 GlobalService("yagames").provider("get:language", function() {
 	return {
