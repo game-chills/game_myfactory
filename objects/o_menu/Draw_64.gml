@@ -198,17 +198,17 @@ for (var i = 0; i < _length; ++i) {
 		if (!is_undefined(_component.state.isprite)) {
 			
 			draw_sprite_to_rectangle(
-					_component.state.isprite,
-					_component.state.isubimg,
-					_component.state.ix1 + 4,
-					_component.state.iy1 + 4,
-					_component.state.ix2 - _component.state.ix1,
-					_component.state.iy2 - _component.state.iy1,
-					c_white,
-					ui.draw.alpha
-				);
+				_component.state.isprite,
+				_component.state.isubimg,
+				_component.state.ix1 + 4,
+				_component.state.iy1 + 4,
+				_component.state.ix2 - _component.state.ix1,
+				_component.state.iy2 - _component.state.iy1,
+				c_white,
+				ui.draw.alpha
+			);
 			
-			}
+		}
 		
 		continue;
 		

@@ -56,6 +56,7 @@
     {"id":{"name":"o_game_service_control_mouse","path":"objects/o_game_service_control_mouse/o_game_service_control_mouse.yy",},},
     {"id":{"name":"o_game_service_control_touches","path":"objects/o_game_service_control_touches/o_game_service_control_touches.yy",},},
     {"id":{"name":"o_game_service_language","path":"objects/o_game_service_language/o_game_service_language.yy",},},
+    {"id":{"name":"o_game_service_settings","path":"objects/o_game_service_settings/o_game_service_settings.yy",},},
     {"id":{"name":"o_game_service_validator_browser","path":"objects/o_game_service_validator_browser/o_game_service_validator_browser.yy",},},
     {"id":{"name":"o_game_service_yagames","path":"objects/o_game_service_yagames/o_game_service_yagames.yy",},},
     {"id":{"name":"o_init_creator","path":"objects/o_init_creator/o_init_creator.yy",},},

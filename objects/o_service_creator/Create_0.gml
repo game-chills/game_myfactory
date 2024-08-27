@@ -7,5 +7,6 @@ instance_create_depth(0, 0, 0, o_game_service_control_touches);
 instance_create_depth(0, 0, 0, o_game_service_control_mouse);
 instance_create_depth(0, 0, 0, o_game_service_yagames);
 instance_create_depth(0, 0, 0, o_game_service_language);
+instance_create_depth(0, 0, 0, o_game_service_settings);
 
 instance_destroy();

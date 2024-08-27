@@ -181,9 +181,11 @@ var _uia_menu_sound_switch = ui_create_button_icon(
 	[{ cf: 0.5, px: +64 }],
 	"menu.audio.switch",
 	function() {
+		
+		var _current_flag = GlobalService("settings:sound").request("get:active");
 		return {
 			sprite: s_icon_sound,
-			subimg: 0,
+			subimg: _current_flag ? 0 : 1,
 		}
 	}
 )
@@ -195,5 +197,8 @@ ui_events.on(_uia_menu_play.ev_onclick, function() {
 })
 
 ui_events.on(_uia_menu_sound_switch.ev_onclick, function() {
-	show_message("SOUND SWITCH");
+	
+	var _current_flag = GlobalService("settings:sound").request("get:active");
+	GlobalService("settings:sound").request("set:active", !_current_flag);
+	
 })
