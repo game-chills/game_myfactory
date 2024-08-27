@@ -1,6 +1,6 @@
 {
   "$GMObject":"",
-  "%Name":"o_service_tracking_window",
+  "%Name":"o_game_service_tracking_window",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
@@ -8,11 +8,11 @@
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_service_tracking_window",
+  "name":"o_game_service_tracking_window",
   "overriddenProperties":[],
   "parent":{
-    "name":"[l-0]::common:services",
-    "path":"folders/services/[l-0]::common:services.yy",
+    "name":"[l-0]::game:services",
+    "path":"folders/services/[l-0]::game:services.yy",
   },
   "parentObjectId":null,
   "persistent":true,

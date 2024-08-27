@@ -1,6 +1,6 @@
 
 // level:0
-instance_create_depth(0, 0, 0, o_service_tracking_window);
+instance_create_depth(0, 0, 0, o_game_service_tracking_window);
 
 // level:1
 instance_create_depth(0, 0, 0, o_game_service_validator_browser);
