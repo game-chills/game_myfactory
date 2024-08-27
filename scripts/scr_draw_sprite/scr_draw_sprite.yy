@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_draw_sprite",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_draw_sprite",
+  "parent":{
+    "name":"module:draw",
+    "path":"folders/modules/module:common/module:draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

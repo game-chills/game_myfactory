@@ -48,12 +48,16 @@ if (ui.transition.stage == "out") {
 
 version_alpha = max(version_alpha, ui.draw.alpha);
 
-
 /* update flags */
 
 var _is_need_update_texts = true;
 var _is_need_update_sizes = true;
-var _is_need_update_position = true;
+var _is_need_update_position = true
+
+var _is_need_update_texts__amendments = true;
+
+var _is_need_update_params = true;
+
 var _is_need_interaction_reset = ui.transition.stage != "out";
 var _is_need_interaction_update = ui.transition.stage == "interaction";
 
@@ -71,6 +75,13 @@ if (_is_need_update_texts) {
 			_component = _components[i];
 			
 			if (_component.type == "button") {
+				_component.state.text = t(_component.key);
+				_component.state.font = font_menu_ru;
+				
+				continue;
+			}
+			
+			if (_component.type == "button-icon") {
 				_component.state.text = t(_component.key);
 				_component.state.font = font_menu_ru;
 				
@@ -97,6 +108,11 @@ if (_is_need_update_sizes) {
 			_component = _components[i];
 			
 			if (_component.type == "button") {
+				_width = 600;
+				_height = 100;
+			}
+			
+			if (_component.type == "button-icon") {
 				_width = 600;
 				_height = 100;
 			}
@@ -150,6 +166,136 @@ if (_is_need_update_position) {
 				
 				continue;
 			}
+			
+			if (_component.type == "button-icon") {
+				_xc = ui_methods_calculate_pos_x(
+					_component.x
+				);
+				_yc = ui_methods_calculate_pos_y(
+					_component.y
+				);
+				_x1 = _xc - _component.state.width / 2;
+				_y1 = _yc - _component.state.height / 2;
+				_x2 = _xc + _component.state.width / 2;
+				_y2 = _yc + _component.state.height / 2;
+				
+				_component.state.xc = _xc;
+				_component.state.yc = _yc;
+				_component.state.x1 = _x1;
+				_component.state.y1 = _y1;
+				_component.state.x2 = _x2;
+				_component.state.y2 = _y2;
+				
+				_component.state.tx = _x1 + 32;
+				_component.state.ty = _yc;
+				
+				var _square_side = (
+					_component.state.height
+				);
+				var _square_offset = _square_side * 0.1;
+				var _square_size = _square_side * 0.8;
+				
+				_component.state.ix2 = _component.state.x2 - _square_offset;
+				_component.state.iy2 = _component.state.y2 - _square_offset;
+				_component.state.ix1 = _component.state.ix2 - _square_size;
+				_component.state.iy1 = _component.state.iy2 - _square_size;
+				
+				continue;
+			}
+		}
+	}
+	
+}
+
+/* s:calc components calculate texts [amendments] */
+
+if (_is_need_update_texts__amendments) {
+	
+	var _layer = ui.layer;
+	var _components = ui.elements[$ _layer];
+	
+	if (is_array(_components)) {
+		var _length = array_length(_components);
+		var _component;
+
+		for (var i = 0; i < _length; ++i) {
+			_component = _components[i];
+			
+			if (_component.type == "button-icon") {
+				
+				var _text = _component.state.text;
+				var _text_base = _text;
+				var _available_width = 
+					(_component.state.ix1 - _component.state.tx) * 0.96;
+				
+				draw_set_font(_component.state.font);
+				
+				var _max_depth = string_length(_text);
+				while (string_width(_text) > _available_width) {
+					_text = string_delete(_text, string_length(_text), 1);
+					
+					/// safe handler
+					--_max_depth;
+					if (_max_depth <= 0) {
+						break;
+					}
+				}
+				
+				if (_text != _text_base) {
+					
+					repeat (2) {
+						
+						_max_depth = 4;
+						while (string_width(_text + ".") > _available_width) {
+							_text = string_delete(_text, string_length(_text), 1);
+							
+							/// safe handler
+							--_max_depth;
+							if (_max_depth <= 0) {
+								break;
+							}
+						}
+						
+						_text = _text + ".";
+					}
+					
+					_component.state.text = _text;
+				}
+				
+				continue;
+			}
+		}
+	}
+	
+}
+
+/* s:calc components calculate params */
+
+if (_is_need_update_params) {
+	
+	var _layer = ui.layer;
+	var _components = ui.elements[$ _layer];
+	
+	if (is_array(_components)) {
+		var _length = array_length(_components);
+		var _component;
+		
+		for (var i = 0; i < _length; ++i) {
+			_component = _components[i];
+			
+			if (_component.type == "button-icon") {
+				
+				var _sprite = _component.icon_provider();
+				
+				if (!is_struct(_sprite)) {
+					continue;	
+				}
+				
+				_component.state.isprite = _sprite.sprite;
+				_component.state.isubimg = _sprite.subimg;
+				
+				continue;
+			}
 		}
 	}
 	
@@ -182,11 +328,15 @@ if (_is_need_interaction_reset) {
 		for (i = 0; i < _length; ++i) {
 			_component = _components[i];
 			
-			if (_component.type == "button") {
+			if (
+				_component.type == "button" ||
+				_component.type == "button-icon"
+			) {
 				_component.state.type = "none";
 				
 				continue;
 			}
+			
 		}
 		
 	}
@@ -212,7 +362,10 @@ if (_is_need_interaction_update) {
 		for (i = 0; i < _length; ++i) {
 			_component = _components[i];
 			
-			if (_component.type == "button") {
+			if (
+				_component.type == "button" ||
+				_component.type == "button-icon"
+			) {
 				_has_collision = point_in_rectangle(
 					_control_mouse.gui_x,
 					_control_mouse.gui_y,

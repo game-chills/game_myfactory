@@ -92,6 +92,129 @@ for (var i = 0; i < _length; ++i) {
 		continue;
 		
 	}
+
+	if (_component.type == "button-icon") {
+		
+		draw_set_font(_component.state.font);
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_center);
+		
+		if (_component.state.type == "none") {
+			
+			draw_set_color(c_black);
+			draw_set_alpha(ui.draw.alpha);
+			
+			draw_text(
+				_component.state.tx,
+				_component.state.ty,
+				_component.state.text
+			);
+			
+			if (!is_undefined(_component.state.isprite)) {
+			
+				draw_sprite_to_rectangle(
+					_component.state.isprite,
+					_component.state.isubimg,
+					_component.state.ix1,
+					_component.state.iy1,
+					_component.state.ix2 - _component.state.ix1,
+					_component.state.iy2 - _component.state.iy1,
+					c_white,
+					ui.draw.alpha
+				);
+			
+			}
+			
+			continue;
+		}
+		
+		if (_component.state.type == "hover") {
+			
+			draw_sprite_stretched_ext(
+				s_menu_button,
+				0,
+				_component.state.x1,
+				_component.state.y1,
+				_component.state.width,
+				_component.state.height,
+				c_black,
+				0.5 * ui.draw.alpha,
+			);
+			
+			draw_set_color(c_white);
+			draw_set_alpha(ui.draw.alpha);
+			
+			draw_text(
+				_component.state.tx,
+				_component.state.ty,
+				_component.state.text
+			);
+			
+			if (!is_undefined(_component.state.isprite)) {
+			
+				draw_sprite_to_rectangle(
+					_component.state.isprite,
+					_component.state.isubimg,
+					_component.state.ix1,
+					_component.state.iy1,
+					_component.state.ix2 - _component.state.ix1,
+					_component.state.iy2 - _component.state.iy1,
+					c_white,
+					ui.draw.alpha
+				);
+			
+			}
+			
+			continue;
+		}
+		
+		draw_sprite_stretched_ext(
+			s_menu_button,
+			0,
+			_component.state.x1 + 4,
+			_component.state.y1 + 4,
+			_component.state.width,
+			_component.state.height,
+			c_gray,
+			0.5 * ui.draw.alpha,
+		);
+			
+		draw_set_color(c_dkgray);
+		draw_set_alpha(ui.draw.alpha);
+		
+		draw_text(
+			_component.state.tx,
+			_component.state.ty,
+			_component.state.text
+		);
+		
+		draw_set_color(c_white);
+		draw_text(
+			_component.state.tx + 4,
+			_component.state.ty + 4,
+			_component.state.text
+		);
+		
+		if (!is_undefined(_component.state.isprite)) {
+			
+			draw_sprite_to_rectangle(
+					_component.state.isprite,
+					_component.state.isubimg,
+					_component.state.ix1 + 4,
+					_component.state.iy1 + 4,
+					_component.state.ix2 - _component.state.ix1,
+					_component.state.iy2 - _component.state.iy1,
+					c_white,
+					ui.draw.alpha
+				);
+			
+			}
+		
+		continue;
+		
+	}
+
+
 }
 
 /* draw version */

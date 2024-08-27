@@ -70,6 +70,61 @@ ui_create_button = function(
 	}
 }
 
+ui_create_button_icon = function(
+	_layer,
+	_x,
+	_y,
+	_key,
+	_icon_provider,
+	_action=undefined
+) {
+	var _type = "button-icon";
+	
+	_action ??= string("{0}/{1}", _type, _key);
+ 	
+	var _component = {
+		type: _type,
+		x: _x,
+		y: _y,
+		key: _key,
+		action: _action,
+		icon_provider: _icon_provider,
+		state: {
+			xc: 0,
+			yc: 0,
+			x1: 0,
+			y1: 0,
+			x2: 0,
+			y2: 0,
+			width: 0,
+			height: 0,
+			
+			text: _key,
+			font: 0,
+			
+			type: "none", // none / hover / pressed / released
+			
+			tx: 0,
+			ty: 0,
+			isprite: undefined,
+			isubimg: 0,
+			ix1: 0,
+			iy1: 0,
+			ix2: 0,
+			iy2: 0,
+		},
+	}
+	
+	var _layer_elements = ui.elements[$ _layer] ?? [];
+	ui.elements[$ _layer] = _layer_elements;
+	
+	array_push(_layer_elements, _component);
+	
+	return {
+		ev_onclick: "mouse:click::" + _action,
+	}
+}
+
 ui_methods_calculate_pos = function(_pos_components, _methods) {
 	var _length = array_length(_pos_components);
 	var _display_get_gui_main_axios_size = _methods.display_get_gui_main_axios_size;
@@ -117,14 +172,20 @@ var _uia_menu_play = ui_create_button(
 	"main",
 	[{ cf: 0.5 }],
 	[{ cf: 0.5, px: -64 }],
-	"menu.play"
+	"menu.play",
 )
 
-var _uia_menu_sound_switch = ui_create_button(
+var _uia_menu_sound_switch = ui_create_button_icon(
 	"main",
 	[{ cf: 0.5 }],
 	[{ cf: 0.5, px: +64 }],
-	"menu.sound.switch"
+	"menu.audio.switch",
+	function() {
+		return {
+			sprite: s_icon_sound,
+			subimg: 0,
+		}
+	}
 )
 
 /* ui listeners */
