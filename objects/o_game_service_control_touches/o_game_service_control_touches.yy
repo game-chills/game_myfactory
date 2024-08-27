@@ -10,8 +10,8 @@
   "name":"o_game_service_control_touches",
   "overriddenProperties":[],
   "parent":{
-    "name":"game:services",
-    "path":"folders/services/game:services.yy",
+    "name":"[l-1]::game:services",
+    "path":"folders/services/[l-1]::game:services.yy",
   },
   "parentObjectId":null,
   "persistent":true,

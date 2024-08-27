@@ -11,8 +11,8 @@
   "name":"o_service_tracking_window",
   "overriddenProperties":[],
   "parent":{
-    "name":"common:services",
-    "path":"folders/services/common:services.yy",
+    "name":"[l-0]::common:services",
+    "path":"folders/services/[l-0]::common:services.yy",
   },
   "parentObjectId":null,
   "persistent":true,

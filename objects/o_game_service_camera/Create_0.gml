@@ -1,9 +1,10 @@
 
 /* EVENT:LIST */
 /*
-	camera.bind (
-		void
-	)
+	camera.bind ({ 
+		base_w,
+		base_h,
+	})
 	camera.resize ({ 
 		base_w,
 		base_h,
@@ -52,7 +53,10 @@ bind_camera_for_view = function() {
 
 /// notifies
 emit_update_view_camera = function() {
-	GlobalEventEmitter("camera").emit("bind");
+	GlobalEventEmitter("camera").emit("bind", {
+		base_w: camera_base_w,
+		base_h: camera_base_h,
+	});
 }
 
 emit_update_camera_size = function() {

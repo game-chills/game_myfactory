@@ -1,18 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"o_game_service_language",
+  "%Name":"o_game_service_camera_center",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_game_service_language",
+  "name":"o_game_service_camera_center",
   "overriddenProperties":[],
   "parent":{
-    "name":"[l-1]::game:services",
-    "path":"folders/services/[l-1]::game:services.yy",
+    "name":"[l-2]::game:services",
+    "path":"folders/services/[l-2]::game:services.yy",
   },
   "parentObjectId":null,
-  "persistent":false,
+  "persistent":true,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
