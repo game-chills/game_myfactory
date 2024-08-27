@@ -252,6 +252,22 @@ ui_initiate_exit = function(_callback) {
 /// @events
 
 ui_events = new EventEmitter();
+ui_events_actions = new EventEmitter();
+
+/* ui listeners system */
+
+ui_events.on("goto:to-in", function(_props) {
+	
+	var _layer = _props.layer;
+	if (_layer != "void") {
+		return;
+	}
+	
+	ui_events.emit("goto:void:exit");
+	ui_events.off("goto:void:exit");
+	ui_void();
+	
+});
 
 /* ui description */
 
@@ -341,8 +357,7 @@ ui_events.on(_uia_menu_play.ev_onclick, function() {
 
 ui_events.on(_uia_menu_sound_switch.ev_onclick, function() {
 	
-	var _current_flag = GlobalService("settings:sound").request("get:active");
-	GlobalService("settings:sound").request("set:active", !_current_flag);
+	ui_events_actions.emit("settings:sound:switch");
 	
 })
 
@@ -360,8 +375,7 @@ ui_events.on(_uia_menu_play_reset.ev_onclick, function() {
 
 ui_events.on(_uia_menu_play_reset_yes.ev_onclick, function() {
 	
-	show_message("Нужно сбросить игру, когда будет реализован стор прогресса");
-	
+	ui_events_actions.emit("game:progress:reset");
 	ui_initiate_goto("play");
 	
 })
@@ -376,24 +390,30 @@ ui_events.on(_uia_menu_play_start.ev_onclick, function() {
 	
 	ui_initiate_exit(function() {
 		
-		show_message("Start");
+		ui_events_actions.emit("game:start");
 		
 	})
 	
 })
 
-/* ui listeners system */
+/* ui listeners actions */
 
-ui_events.on("goto:to-in", function(_props) {
+ui_events_actions.on("settings:sound:switch", function() {
 	
-	var _layer = _props.layer;
-	if (_layer != "void") {
-		return;
-	}
+	var _current_flag = GlobalService("settings:sound").request("get:active");
+	GlobalService("settings:sound").request("set:active", !_current_flag);
 	
-	ui_events.emit("goto:void:exit");
-	ui_events.off("goto:void:exit");
-	ui_void();
+});
+
+ui_events_actions.on("game:progress:reset", function() {
+	
+	show_message("Нужно сбросить игру, когда будет реализован стор прогресса");
+	
+});
+
+ui_events_actions.on("game:start", function() {
+	
+	show_message("Start");
 	
 });
 
