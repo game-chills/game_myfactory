@@ -36,6 +36,7 @@
     {"$GMFolder":"","%Name":"masks","folderPath":"folders/stages/stage-2::[game]/physics/masks.yy","name":"masks","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"translate.common.json","CopyToMask":-1,"filePath":"datafiles","name":"translate.common.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"translate.menu.json","CopyToMask":-1,"filePath":"datafiles","name":"translate.menu.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,

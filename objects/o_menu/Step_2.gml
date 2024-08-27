@@ -46,6 +46,9 @@ if (ui.transition.stage == "out") {
 		1 - ui.transition.time_current / ui.transition.time_max;
 }
 
+version_alpha = max(version_alpha, ui.draw.alpha);
+
+
 /* update flags */
 
 var _is_need_update_texts = true;

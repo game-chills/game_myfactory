@@ -109,6 +109,8 @@ ui_methods_calculate_pos_y = function(_pos_components) {
 
 ui_events = new EventEmitter();
 
+version_alpha = 0;
+
 /* ui description */
 
 var _uia_menu_play = ui_create_button(
