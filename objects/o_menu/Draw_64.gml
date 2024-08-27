@@ -25,7 +25,7 @@ for (var i = 0; i < _length; ++i) {
 		
 		if (_component.state.type == "none") {
 			
-			draw_set_color(c_black);
+			draw_set_color(_component.params.text_base_color);
 			draw_set_alpha(ui.draw.alpha);
 			
 			draw_text(
@@ -101,7 +101,7 @@ for (var i = 0; i < _length; ++i) {
 		
 		if (_component.state.type == "none") {
 			
-			draw_set_color(c_black);
+			draw_set_color(_component.params.text_base_color);
 			draw_set_alpha(ui.draw.alpha);
 			
 			draw_text(
@@ -213,7 +213,24 @@ for (var i = 0; i < _length; ++i) {
 		continue;
 		
 	}
-
+	
+	if (_component.type == "text") {
+		
+		draw_set_font(_component.state.font);
+		draw_set_halign(_component.halign);
+		draw_set_valign(_component.valign);
+		draw_set_color(c_black);
+		draw_set_alpha(ui.draw.alpha);
+		
+		draw_text(
+			_component.state.xc,
+			_component.state.yc,
+			_component.state.text
+		);
+		
+		continue;
+		
+	}
 
 }
 
@@ -226,7 +243,7 @@ draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 
 draw_text(
-	display_get_gui_width(),
-	display_get_gui_height(),
+	display_get_gui_width() - 4,
+	display_get_gui_height() - 4,
 	string("v.{0}", MACRO_CONST_VERSION)
 );

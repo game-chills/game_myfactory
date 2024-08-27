@@ -25,8 +25,12 @@ if (ui.transition.stage != "interaction") {
 			
 			ui.layer = ui.transition.next_layer;
 			ui.transition.next_layer = undefined;
-		}
-		if (ui.transition.stage == "in") {
+			
+			ui_events.emit("goto:to-in", {
+				layer: ui.layer,
+			});
+			
+		} else if (ui.transition.stage == "in") {
 			ui.transition.stage = "interaction";
 			ui.transition.time_current = 0;
 			ui.transition.time_max = 0;
@@ -87,6 +91,14 @@ if (_is_need_update_texts) {
 				
 				continue;
 			}
+			
+			if (_component.type == "text") {
+				_component.state.text = t(_component.key);
+				_component.state.font = font_menu_ru;
+				
+				continue;
+			}
+			
 		}
 	}
 
@@ -107,20 +119,19 @@ if (_is_need_update_sizes) {
 		for (var i = 0; i < _length; ++i) {
 			_component = _components[i];
 			
-			if (_component.type == "button") {
+			if (
+				_component.type == "button" ||
+				_component.type == "button-icon"
+			) {
 				_width = 600;
 				_height = 100;
+				
+				_component.state.width = _width;
+				_component.state.height = _height;
+				
+				continue;
 			}
 			
-			if (_component.type == "button-icon") {
-				_width = 600;
-				_height = 100;
-			}
-			
-			_component.state.width = _width;
-			_component.state.height = _height;
-			
-			continue;
 		}
 	}
 	
@@ -202,6 +213,21 @@ if (_is_need_update_position) {
 				
 				continue;
 			}
+			
+			if (_component.type == "text") {
+				_xc = ui_methods_calculate_pos_x(
+					_component.x
+				);
+				_yc = ui_methods_calculate_pos_y(
+					_component.y
+				);
+				
+				_component.state.xc = _xc;
+				_component.state.yc = _yc;
+				
+				continue;
+			}
+			
 		}
 	}
 	

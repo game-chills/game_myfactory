@@ -2,6 +2,9 @@
 /* You need control memory leak */
 /* pattern for immortal objects */
 
+/* It's better not to use this, */
+/* giving priority to events and state duplication */
+
 function Service() constructor {
 	
 	#region __constructor
