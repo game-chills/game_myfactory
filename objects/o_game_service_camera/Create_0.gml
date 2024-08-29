@@ -13,10 +13,11 @@
 
 /* params */
 
-camera_mode = "base"; // "base"
+camera_mode = "@html5-v1"; // "@html5-v1"
 camera_props = {
-	width: 1920,
-	height: 1080,
+	//width: 1080,
+	height: 1920,
+	orientation_portrait: true,
 }
 
 /* state */
@@ -219,27 +220,56 @@ GlobalService("camera").provider("set:angle", set_angle);
 
 GlobalEventEmitter("window").on("change", function(_props) {
 	
-	#region base
-	if (camera_mode == "base") {
+	#region @html5-v1
+	if (camera_mode == "@html5-v1") {
 		
 		var _cam_props_w = camera_props[$ "width"];
 		var _cam_props_h = camera_props[$ "height"];
+		var _cam_props_is_portrait = camera_props[$ "orientation_portrait"] == true;
+		
+		var _prop_width = _props.width;
+		var _prop_height = _props.height;
+		var _prop_orientation = _props.orientation;
 		
 		var _width;
 		var _height;
 		var _surf_width = undefined;
 		var _surf_height = undefined;
 		
+		if (is_desktop() && !is_browser()) {
+			_surf_width ??= _prop_width;
+			_surf_height ??= _prop_height;
+			
+			if (_prop_orientation == "landscape") {
+			
+				if (_cam_props_is_portrait) {
+					var _z = _prop_width;
+				
+					_prop_width = _prop_height;
+					_prop_height = _z;
+				}
+			
+			} else {
+			
+				if (!_cam_props_is_portrait) {
+					var _z = _prop_width;
+				
+					_prop_width = _prop_height;
+					_prop_height = _z;
+				}
+			}
+		}
+		
 		if (is_numeric(_cam_props_w) && is_undefined(_cam_props_h)) {
 			_width = _cam_props_w;
-			_height = _props.height / _props.width * _cam_props_w;	
+			_height = _prop_height / _prop_width * _cam_props_w;	
 		} else if (is_numeric(_cam_props_h) && is_undefined(_cam_props_w)) {
 			_height = _cam_props_h;
-			_width = _props.width / _props.height * _cam_props_h;
+			_width = _prop_width / _prop_height * _cam_props_h;
 		} else if (is_numeric(_cam_props_h) && is_numeric(_cam_props_w)) {
 			
-			var _w = _props.width / _props.height * _cam_props_h;
-			var _h = _props.height / _props.width * _cam_props_w;
+			var _w = _prop_width / _prop_height * _cam_props_h;
+			var _h = _prop_height / _prop_width * _cam_props_w;
 			
 			var _v1_w = _cam_props_w;
 			var _v1_h = _h;
@@ -258,18 +288,18 @@ GlobalEventEmitter("window").on("change", function(_props) {
 			}
 			
 		} else {
-			_width = _props.width;
-			_height = _props.height;
+			_width = _prop_width;
+			_height = _prop_height;
 		}
 		
 		if (is_desktop()) {
-			_surf_width ??= _props.width;
-			_surf_height ??= _props.height;
+			_surf_width ??= _prop_width;
+			_surf_height ??= _prop_height;
 		}
 	
 		if (is_browser() && is_mobile()) {
-			var _w = _props.width / _props.height * _cam_props_h;
-			var _h = _props.height / _props.width * _cam_props_w;
+			var _w = _prop_width / _prop_height * _cam_props_h;
+			var _h = _prop_height / _prop_width * _cam_props_w;
 			
 			var _v1_w = _cam_props_w;
 			var _v1_h = _h;
@@ -337,13 +367,45 @@ GlobalEventEmitter("window").on("change", function(_props) {
 				if (!variable_instance_exists(self, "debug_window_first_resize")) {
 					self.debug_window_first_resize = true;
 					
-					window_set_min_width(640);
-					window_set_min_height(480);
+					var _ww1 = 640;
+					var _hh1 = _height / _width * _ww1;
+					
+					var _hh2 = 480;
+					var _ww2 = _width / _height * _hh2;
+					
+					var _ww;
+					var _hh;
+					
+					if (_ww1 * _hh1 > _ww2 * _hh2) {
+						_ww = _ww2;
+						_hh = _hh2;
+					} else {
+						_ww = _ww1;
+						_hh = _hh1;
+					}
+					
 					window_set_position(160, 160);
-					window_set_size(
-						display_get_width() * 0.8, 
-						display_get_height() * 0.8
+					window_set_min_width(_ww);
+					window_set_min_height(_hh);
+					
+					var _min_scale = min(
+						(display_get_width() * 0.8) / _ww,
+						(display_get_height() * 0.8) / _hh
 					);
+					
+					var _tw = _ww * _min_scale;
+					var _th = _hh * _min_scale;
+					window_set_size(_tw, _th);
+					
+					show_debug_message({
+						emitter: "o_game_service_camera",
+						cause: "@windows :: e_module_html_fullscreen:window",
+						text: "resize windows",
+						width: _ww,
+						height: _hh,
+						t_width: _tw,
+						t_height: _th,
+					});
 				}
 			}
 		}
