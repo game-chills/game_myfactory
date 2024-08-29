@@ -236,6 +236,7 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		var _surf_width = undefined;
 		var _surf_height = undefined;
 		
+		/// @debug
 		if (is_desktop() && !is_browser()) {
 			_surf_width ??= _prop_width;
 			_surf_height ??= _prop_height;
@@ -292,6 +293,7 @@ GlobalEventEmitter("window").on("change", function(_props) {
 			_height = _prop_height;
 		}
 		
+		/// @debug
 		if (is_desktop()) {
 			_surf_width ??= _prop_width;
 			_surf_height ??= _prop_height;
@@ -362,6 +364,7 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		 *
 		 * Other platform for only debug
 		 */
+		/// @debug
 		if (MACRO_FLAG_IS_DEBUG) {
 			if (os_type == os_windows && os_browser == browser_not_a_browser) {
 				if (!variable_instance_exists(self, "debug_window_first_resize")) {
