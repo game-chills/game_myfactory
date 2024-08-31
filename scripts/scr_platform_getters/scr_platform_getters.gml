@@ -15,3 +15,19 @@ function is_desktop() {
 		os_type == os_linux ||
 		os_type == os_macosx
 }
+
+function is_desktop_native() {
+	return is_desktop() && !is_browser();
+}
+
+function is_desktop_browser() {
+	return is_desktop() && is_browser();	
+}
+
+function is_mobile_native() {
+	return is_mobile() && !is_browser();	
+}
+
+function is_mobile_browser() {
+	return is_mobile() && is_browser();	
+}

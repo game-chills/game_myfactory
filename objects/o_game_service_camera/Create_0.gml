@@ -235,9 +235,11 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		var _height;
 		var _surf_width = undefined;
 		var _surf_height = undefined;
+		var _gui_width = undefined;
+		var _gui_height = undefined;
 		
 		/// @debug
-		if (is_desktop() && !is_browser()) {
+		if (is_desktop_native()) {
 			_surf_width ??= _prop_width;
 			_surf_height ??= _prop_height;
 			
@@ -262,62 +264,55 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		}
 		
 		if (is_numeric(_cam_props_w) && is_undefined(_cam_props_h)) {
-			_width = _cam_props_w;
-			_height = _prop_height / _prop_width * _cam_props_w;	
+			var _size = winadaptive_calculate_by_width({
+				width: _prop_width,
+				height: _prop_height,
+			}, _cam_props_w);
+			
+			_width = _size.width;
+			_height = _size.height;
 		} else if (is_numeric(_cam_props_h) && is_undefined(_cam_props_w)) {
-			_height = _cam_props_h;
-			_width = _prop_width / _prop_height * _cam_props_h;
+			var _size = winadaptive_calculate_by_height({
+				width: _prop_width,
+				height: _prop_height,
+			}, _cam_props_h);
+			
+			_width = _size.width;
+			_height = _size.height;
 		} else if (is_numeric(_cam_props_h) && is_numeric(_cam_props_w)) {
+			var _size = winadaptive_calculate({
+				width: _prop_width,
+				height: _prop_height,
+			}, {
+				width: _cam_props_w,
+				height: _cam_props_h,
+			});
 			
-			var _w = _prop_width / _prop_height * _cam_props_h;
-			var _h = _prop_height / _prop_width * _cam_props_w;
-			
-			var _v1_w = _cam_props_w;
-			var _v1_h = _h;
-			var _v1_square = _v1_w * _v1_h;
-			
-			var _v2_w = _w;
-			var _v2_h = _cam_props_h;
-			var _v2_square = _v2_w * _v2_h;
-			
-			if (_v1_square > _v2_square) {
-				_width = _v1_w;
-				_height = _v1_h;
-			} else {
-				_width = _v2_w;
-				_height = _v2_h;
-			}
-			
+			_width = _size.max.width;
+			_height = _size.max.height;
 		} else {
 			_width = _prop_width;
 			_height = _prop_height;
 		}
 		
-		/// @debug
-		if (is_desktop()) {
+		if (is_desktop_native()) {
 			_surf_width ??= _prop_width;
 			_surf_height ??= _prop_height;
 		}
 	
-		if (is_browser() && is_mobile()) {
-			var _w = _prop_width / _prop_height * _cam_props_h;
-			var _h = _prop_height / _prop_width * _cam_props_w;
+		/* html5 &+ mobile &+ desktop */ {
+			var _size = winadaptive_calculate({
+				width: _prop_width,
+				height: _prop_height,
+			}, {
+				width: _cam_props_w,
+				height: _cam_props_h,
+			});
 			
-			var _v1_w = _cam_props_w;
-			var _v1_h = _h;
-			var _v1_square = _v1_w * _v1_h;
-			
-			var _v2_w = _w;
-			var _v2_h = _cam_props_h;
-			var _v2_square = _v2_w * _v2_h;
-			
-			if (_v1_square > _v2_square) {
-				_surf_width ??= _v2_w;
-				_surf_height ??= _v2_h;
-			} else {
-				_surf_width ??= _v1_w;
-				_surf_height ??= _v1_h;
-			}
+			_surf_width ??= _size.min.width;
+			_surf_height ??= _size.min.height;
+			_gui_width ??= _size.min.width;
+			_gui_height ??= _size.min.height;
 		}
 		
 		if (MACRO_FLAG_IS_DEBUG) {
@@ -370,44 +365,35 @@ GlobalEventEmitter("window").on("change", function(_props) {
 				if (!variable_instance_exists(self, "debug_window_first_resize")) {
 					self.debug_window_first_resize = true;
 					
-					var _ww1 = 640;
-					var _hh1 = _height / _width * _ww1;
+					var _size = winadaptive_calculate({
+						width: _width,
+						height: _height,
+					}, {
+						width: 640,
+						height: 480,	
+					});
 					
-					var _hh2 = 480;
-					var _ww2 = _width / _height * _hh2;
-					
-					var _ww;
-					var _hh;
-					
-					if (_ww1 * _hh1 > _ww2 * _hh2) {
-						_ww = _ww2;
-						_hh = _hh2;
-					} else {
-						_ww = _ww1;
-						_hh = _hh1;
-					}
+					var _window = winadaptive_calculate_inscribed_rectangle({
+						width: _size.min.width,
+						height: _size.min.height,
+					}, {
+						width: display_get_width() * 0.8,
+						height: display_get_height() * 0.8
+					});
 					
 					window_set_position(160, 160);
-					window_set_min_width(_ww);
-					window_set_min_height(_hh);
-					
-					var _min_scale = min(
-						(display_get_width() * 0.8) / _ww,
-						(display_get_height() * 0.8) / _hh
-					);
-					
-					var _tw = _ww * _min_scale;
-					var _th = _hh * _min_scale;
-					window_set_size(_tw, _th);
+					window_set_min_width(_size.min.width);
+					window_set_min_height(_size.min.height);
+					window_set_size(_window.width, _window.height);
 					
 					show_debug_message({
 						emitter: "o_game_service_camera",
 						cause: "@windows :: e_module_html_fullscreen:window",
 						text: "resize windows",
-						width: _ww,
-						height: _hh,
-						t_width: _tw,
-						t_height: _th,
+						width: _size.min.width,
+						height: _size.min.height,
+						t_width: _window.width,
+						t_height: _window.height,
 					});
 				}
 			}
@@ -415,6 +401,8 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		
 		_surf_width ??= _width;
 		_surf_height ??= _height;
+		_gui_width ??= _surf_width;
+		_gui_height ??= _surf_height;
 		
 		if (MACRO_FLAG_IS_DEBUG) {
 			show_debug_message({
@@ -423,6 +411,8 @@ GlobalEventEmitter("window").on("change", function(_props) {
 				text: "GUI and APP_SURF size",
 				width: _surf_width,
 				height: _surf_height,
+				gui_width: _gui_width,
+				gui_height: _gui_height,
 			});
 		}
 		
@@ -432,7 +422,7 @@ GlobalEventEmitter("window").on("change", function(_props) {
 		}
 		
 		/* display gui */
-		display_set_gui_size(_surf_width, _surf_height);
+		display_set_gui_size(_gui_width, _gui_height);
 		
 		/* camera update */
 		camera_base_w = _width;
