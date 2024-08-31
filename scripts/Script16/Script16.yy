@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Script16",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Script16",
+  "parent":{
+    "name":"game_myfactory",
+    "path":"game_myfactory.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

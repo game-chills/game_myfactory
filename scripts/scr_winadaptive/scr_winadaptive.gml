@@ -15,6 +15,32 @@ function winadaptive_calculate_by_height(_size_window, _size_view_height) {
 
 function winadaptive_calculate(_size_window, _size_view) {
 	
+	if (is_undefined(_size_view.width) && is_undefined(_size_view.height)) {
+		throw ({
+			message: "[o_game_service_camera] bad arguments",
+		})
+	}
+	
+	if (is_undefined(_size_view.width)) {
+		var _by_height = 
+			winadaptive_calculate_by_height(_size_window, _size_view.height);
+		
+		return {
+			min: _by_height,
+			max: _by_height,
+		}
+	}
+	
+	if (is_undefined(_size_view.height)) {
+		var _by_width = 
+			winadaptive_calculate_by_width(_size_window, _size_view.width);
+		
+		return {
+			min: _by_width,
+			max: _by_width,
+		}
+	}
+	
 	var _by_width = 
 		winadaptive_calculate_by_width(_size_window, _size_view.width);
 	var _by_height = 
