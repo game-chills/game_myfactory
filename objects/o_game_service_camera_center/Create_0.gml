@@ -3,11 +3,12 @@
 
 camera_room_center = function(_w, _h) {
 	
-	GlobalService("camera").request("set:pos_by_center", {
+	GlobalService("camera").request("set:pos_by", {
 		x: room_width / 2,
-		y: room_height / 2,
+		y: room_height,
+		ox: 0.5,
+		oy: 1,
 	});
-	
 }
 
 /* listeners */

@@ -13,6 +13,7 @@ instance_create_depth(0, 0, 0, o_game_service_settings);
 
 // level:2
 instance_create_depth(0, 0, 0, o_game_service_camera_center);
+instance_create_depth(0, 0, 0, o_game_service_pause);
 
 // clear
 instance_destroy();

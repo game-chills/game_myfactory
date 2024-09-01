@@ -1,19 +1,22 @@
 {
   "$GMObject":"",
-  "%Name":"o_menu",
+  "%Name":"o_menu_v2",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_menu",
+  "name":"o_menu_v2",
   "overriddenProperties":[],
   "parent":{
     "name":"stage-1::[menu]",
     "path":"folders/stages/stage-1::[menu].yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"o_shared_menu",
+    "path":"objects/o_shared_menu/o_shared_menu.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

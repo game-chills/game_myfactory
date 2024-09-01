@@ -9,12 +9,14 @@ time_current = time_max;
 logo_type = "text";
 logo_meta = {
 	text: "game-chills",
+	name: "diskomet",
 	subtext: "github.com/game-chills",
 	text_font: font_logo,
 	subtext_font: font_logo_small,
 }
 
 loading_parts = {
+	_deception: false,
 	e_yagames: false,
 }
 loading_parts_count_max = struct_names_count(loading_parts);
@@ -41,3 +43,10 @@ GlobalEventEmitter("loader").on("ready", function(_type) {
 		loading_parts = undefined;	
 	}
 })
+
+extend_time_source_async(
+	1200,
+	function() {
+		GlobalEventEmitter("loader").emit("ready", "_deception");		
+	},
+);

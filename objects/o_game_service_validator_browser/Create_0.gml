@@ -1,5 +1,6 @@
 
 if (MACRO_FLAG_IS_DEBUG) {
+	instance_destroy();
 	return;
 }
 

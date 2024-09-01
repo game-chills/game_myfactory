@@ -165,10 +165,17 @@ set_pos = function(_x, _y) {
 }
 
 set_pos_by_center = function(_x, _y) {
+	self.set_por_by(_x, _y, 0.5, 0.5);
+}
+
+set_pos_by = function(_x, _y, _ox, _oy) {
 	var _width = camera_get_view_width(camera);
 	var _height = camera_get_view_height(camera);
 	
-	camera_set_view_pos(camera, _x - _width / 2, _y - _height / 2);
+	var _xx = _x - _width * _ox;
+	var _yy = _y - _height * _oy;
+	
+	camera_set_view_pos(camera, _xx, _yy);
 }
 
 set_scale = function(_scale) {
@@ -211,6 +218,9 @@ GlobalService("camera").provider("set:pos", function(_pos) {
 });
 GlobalService("camera").provider("set:pos_by_center", function(_pos) {
 	set_pos_by_center(_pos.x, _pos.y);	
+});
+GlobalService("camera").provider("set:pos_by", function(_pos) {
+	set_pos_by(_pos.x, _pos.y, _pos.ox, _pos.oy);
 });
 GlobalService("camera").provider("set:scale", set_scale);
 GlobalService("camera").provider("set:angle", set_angle);

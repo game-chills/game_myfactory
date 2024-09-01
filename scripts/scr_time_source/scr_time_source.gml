@@ -45,3 +45,16 @@ function extend_time_source_sync(_frames, _callback, _args) {
 	);
 	
 }
+
+function extend_time_source_async(_ms, _callback, _args) {
+	
+	return extend_time_source_start(
+		time_source_game,
+		_ms / 1000,
+		time_source_units_seconds,
+		_callback,
+		_args
+	);
+	
+}
+

@@ -21,9 +21,10 @@ if (logo_type == "text") {
 	var _main_text_height = string_height(logo_meta.text);
 	
 	draw_text(_xcenter, _ycenter, logo_meta.text);
+	draw_text(_xcenter, _ycenter + _main_text_height, logo_meta.name);
 	draw_text(
 		_xcenter, 
-		_ycenter + _main_text_height + 32, 
+		_ycenter + _main_text_height * 2 + 32, 
 		string(
 			"{0}%",
 			floor(loading_parts_count / loading_parts_count_max * 100)
