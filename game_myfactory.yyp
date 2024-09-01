@@ -10,6 +10,7 @@
   },
   "defaultScriptType":1,
   "Folders":[
+    {"$GMFolder":"","%Name":"_dev","folderPath":"folders/_dev.yy","name":"_dev","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"modules","folderPath":"folders/modules.yy","name":"modules","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"module:@html5","folderPath":"folders/modules/module:@html5.yy","name":"module:@html5","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"module:@html5-fullscreen","folderPath":"folders/modules/module:@html5/module:@html5-fullscreen.yy","name":"module:@html5-fullscreen","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -34,8 +35,8 @@
     {"$GMFolder":"","%Name":"stage-1::[menu]","folderPath":"folders/stages/stage-1::[menu].yy","name":"stage-1::[menu]","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"ui","folderPath":"folders/stages/stage-1::[menu]/ui.yy","name":"ui","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"stage-2::[game]","folderPath":"folders/stages/stage-2::[game].yy","name":"stage-2::[game]","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"objects","folderPath":"folders/stages/stage-2::[game]/objects.yy","name":"objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"levels","folderPath":"folders/stages/stage-2::[game]/levels.yy","name":"levels","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"objects","folderPath":"folders/stages/stage-2::[game]/objects.yy","name":"objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"sprites","folderPath":"folders/stages/stage-2::[game]/objects/sprites.yy","name":"sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "IncludedFiles":[
@@ -54,6 +55,7 @@
     {"id":{"name":"font_logo_small","path":"fonts/font_logo_small/font_logo_small.yy",},},
     {"id":{"name":"font_logo","path":"fonts/font_logo/font_logo.yy",},},
     {"id":{"name":"font_menu_ru","path":"fonts/font_menu_ru/font_menu_ru.yy",},},
+    {"id":{"name":"todo","path":"notes/todo/todo.yy",},},
     {"id":{"name":"o_disk","path":"objects/o_disk/o_disk.yy",},},
     {"id":{"name":"o_diskomet","path":"objects/o_diskomet/o_diskomet.yy",},},
     {"id":{"name":"o_game_service_camera_center","path":"objects/o_game_service_camera_center/o_game_service_camera_center.yy",},},

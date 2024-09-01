@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"game_myfactory",
-    "path":"game_myfactory.yyp",
+    "name":"_dev",
+    "path":"folders/_dev.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

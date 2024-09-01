@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"",
+  "%Name":"todo",
+  "name":"todo",
+  "parent":{
+    "name":"game_myfactory",
+    "path":"game_myfactory.yyp",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}
